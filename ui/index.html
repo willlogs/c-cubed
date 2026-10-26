@@ -1,0 +1,80 @@
+<!doctype html>
+<!-- Command center page: home, sessions, map, progress, versions, status.
+     Loads xterm from the local install; no external network. -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Command Center</title>
+  <link rel="stylesheet" href="/vendor/xterm.css">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="/map/map.css">
+  <link rel="stylesheet" href="/sessions/sessions.css">
+  <link rel="stylesheet" href="/home/home.css">
+  <link rel="stylesheet" href="/status/status.css">
+  <link rel="stylesheet" href="/versions/versions.css">
+  <link rel="stylesheet" href="/progress/progress.css">
+  <script src="/vendor/xterm.js"></script>
+  <script src="/vendor/addon-fit.js"></script>
+</head>
+<body>
+  <header>
+    <strong>Command center</strong>
+    <nav>
+      <button data-tab="home" class="active">Home</button>
+      <button data-tab="sessions">Sessions</button>
+      <button data-tab="map">Map</button>
+      <button data-tab="progress">Progress</button>
+      <button data-tab="versions">Versions</button>
+      <button data-tab="status">Status</button>
+    </nav>
+    <div id="usage" class="usage"></div>
+    <span id="version" class="pill version" title="Current version: open Versions">version…</span>
+    <span id="connection" class="pill">connecting…</span>
+  </header>
+
+  <main id="tab-home" class="tab"><div id="home" class="scroll"></div></main>
+
+  <main id="tab-sessions" class="tab sessions hidden">
+    <aside class="sidebar">
+      <h2>Sessions <button id="clean-sessions" class="ghost hidden">Clean</button></h2>
+      <ul id="session-list"></ul>
+      <section class="queue">
+        <h2>Queue</h2>
+        <ul id="queue-list"></ul>
+      </section>
+      <details class="new-worker">
+        <summary>New worker</summary>
+        <form id="worker-form">
+          <label>Issue <input name="issue" required inputmode="numeric" placeholder="42"></label>
+          <label>Slug <input name="slug" required placeholder="board-picker"></label>
+          <label>Model <select name="model"><option>sonnet</option><option>opus</option></select></label>
+          <label>Briefing <textarea name="brief" rows="6" required placeholder="Usually the master writes this."></textarea></label>
+          <button type="submit">Start worker</button>
+          <p id="worker-error" class="error"></p>
+        </form>
+      </details>
+    </aside>
+    <section class="terminal-pane">
+      <div class="terminal-title"><span id="terminal-title">assistant</span><span class="title-actions"><a id="open-issue" class="button ghost hidden" target="_blank" rel="noopener">Open issue</a><button id="stop-session" class="ghost">Stop</button></span></div>
+      <div id="kickoff" class="kickoff hidden">
+        <span>Your assistant is idle until you talk to it.</span>
+        <button id="kickoff-button">Start the day</button>
+        <span id="kickoff-hint" class="hint">It tells you what needs you, then asks the master to plan the day. Or type your own message below.</span>
+      </div>
+      <div id="terminal"></div>
+    </section>
+    <aside class="feed-pane">
+      <h2>Activity <label class="filter"><input type="checkbox" id="feed-all"> all sessions</label></h2>
+      <ol id="feed"></ol>
+    </aside>
+  </main>
+
+  <main id="tab-map" class="tab hidden"><div id="map" class="scroll"></div></main>
+  <main id="tab-progress" class="tab hidden"><div id="progress" class="scroll"></div></main>
+  <main id="tab-versions" class="tab hidden"><div id="versions" class="scroll"></div></main>
+  <main id="tab-status" class="tab hidden"><div id="status" class="scroll"></div></main>
+
+  <script type="module" src="/app.js"></script>
+</body>
+</html>

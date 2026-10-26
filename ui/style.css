@@ -1,0 +1,103 @@
+/* Lays out the command center: header, sessions, terminal, feed.
+   A dark, compact theme sized for a long working day. */
+
+:root {
+  --bg: #0f1115;
+  --panel: #161a21;
+  --line: #262c36;
+  --text: #d8dee9;
+  --muted: #8a93a3;
+  --accent: #6ea8fe;
+  --ok: #4cc38a;
+  --warn: #f5a524;
+  --bad: #f2555a;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { overflow: hidden; background: var(--bg); color: var(--text); font: 13px/1.45 system-ui, sans-serif; display: flex; flex-direction: column; }
+h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 10px 12px 6px; display: flex; justify-content: space-between; }
+a { color: var(--accent); text-decoration: none; }
+button { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+button.active { border-color: var(--accent); color: var(--accent); }
+button.ghost { background: none; padding: 2px 8px; }
+input, select, textarea { width: 100%; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 4px 6px; font: inherit; }
+
+header { display: flex; align-items: center; gap: 16px; padding: 8px 14px; border-bottom: 1px solid var(--line); background: var(--panel); }
+header nav { display: flex; gap: 6px; }
+.usage { display: flex; gap: 14px; margin-left: auto; color: var(--muted); }
+.usage .window { display: inline-flex; align-items: center; gap: 6px; }
+.usage .bar { position: relative; width: 90px; height: 6px; background: var(--line); border-radius: 3px; overflow: hidden; }
+.usage .bar span { position: absolute; top: 0; bottom: 0; left: 0; background: var(--ok); }
+.usage .bar .pace { background: var(--accent); opacity: .45; }
+.usage .bar .warn { background: var(--warn); }
+.usage .bar .bad { background: var(--bad); }
+.usage .reset { font-size: 11px; opacity: .8; }
+.pill { padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line); color: var(--muted); }
+.pill.ok { color: var(--ok); border-color: var(--ok); }
+
+.tab { flex: 1; min-height: 0; }
+.hidden { display: none !important; }
+.sessions { display: grid; grid-template-columns: 260px 1fr 340px; grid-template-rows: minmax(0, 1fr); }
+.sidebar, .feed-pane { background: var(--panel); border-right: 1px solid var(--line); overflow: auto; }
+.feed-pane { border-right: none; border-left: 1px solid var(--line); }
+
+#session-list { list-style: none; margin: 0; padding: 0 8px; }
+#session-list li { padding: 8px; border-radius: 6px; cursor: pointer; margin-bottom: 4px; border: 1px solid transparent; }
+#session-list li.selected { border-color: var(--accent); background: var(--bg); }
+#session-list .name { font-weight: 600; display: flex; align-items: center; gap: 6px; }
+#session-list .meta { color: var(--muted); font-size: 12px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+.dot.working { background: var(--ok); }
+.dot.input { background: var(--warn); }
+.dot.exited { background: var(--bad); }
+
+.new-worker { margin: 12px; }
+.new-worker form { display: grid; gap: 8px; margin-top: 8px; }
+.error { color: var(--bad); min-height: 1em; margin: 0; }
+
+.terminal-pane { display: flex; flex-direction: column; min-width: 0; }
+.terminal-title { display: flex; justify-content: space-between; align-items: center; padding: 6px 12px; border-bottom: 1px solid var(--line); color: var(--muted); }
+#terminal { flex: 1; min-height: 0; overflow: hidden; padding: 6px; box-sizing: content-box; }
+.kickoff { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 12px; border-bottom: 1px solid var(--line); background: var(--panel); }
+.kickoff button { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+.kickoff .hint { color: var(--muted); flex-basis: 100%; }
+
+#feed { list-style: none; margin: 0; padding: 0 10px 10px; font-size: 12px; }
+#feed li { padding: 5px 0; border-bottom: 1px solid var(--line); word-break: break-word; }
+#feed .when { color: var(--muted); margin-right: 6px; }
+#feed .who { color: var(--accent); margin-right: 6px; }
+#feed .Notification { color: var(--warn); }
+#feed .Stop, #feed .SubagentStop { color: var(--ok); }
+.filter { text-transform: none; letter-spacing: 0; font-weight: normal; }
+.filter input { width: auto; }
+
+.scroll { height: 100%; overflow: auto; padding: 16px 24px; }
+.scroll section { margin-bottom: 24px; }
+.scroll ul { margin: 4px 0 8px 18px; padding: 0; }
+.badge { font-size: 11px; padding: 0 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); margin-left: 4px; }
+.badge.OPEN { color: var(--ok); border-color: var(--ok); }
+.badge.MERGED, .badge.CLOSED { color: var(--muted); }
+table { border-collapse: collapse; }
+td, th { text-align: left; padding: 4px 12px 4px 0; border-bottom: 1px solid var(--line); }
+
+/* Session list: compact ended rows, Clean button, Open issue link. */
+#session-list li.ended { padding: 3px 8px; opacity: 0.7; }
+#session-list li.ended .meta { display: inline; margin-left: 14px; }
+#session-list li.ended .name { display: inline-flex; }
+.sidebar h2 { display: flex; justify-content: space-between; align-items: center; }
+.title-actions { display: flex; gap: 8px; align-items: center; }
+a.button { text-decoration: none; padding: 3px 8px; border: 1px solid var(--line); border-radius: 6px; color: inherit; font-size: 13px; }
+
+/* Status tab: stack rows, progress spinner, confirm strip. */
+.stacks { width: 100%; }
+.stacks td { vertical-align: top; }
+.stacks-note { text-transform: none; letter-spacing: 0; font-weight: normal; }
+.stacks .meta { color: var(--muted); font-size: 12px; }
+.stacks .ok { color: var(--ok); }
+.stacks .warn, .stacks .confirm td { color: var(--warn); }
+.stacks button:disabled { opacity: .4; cursor: default; }
+.stack-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.spinner { display: inline-block; width: 10px; height: 10px; margin-right: 6px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -1px; }
+@keyframes spin { to { transform: rotate(360deg); } }

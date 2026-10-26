@@ -1,0 +1,82 @@
+/* Styles the Map: summary bar, two-column graph, nodes, cards, lines.
+   Dots, segments, and the summary legend share status colors. */
+
+/* Today panel above the graph; it reuses these colors. */
+@import url("today/today.css");
+
+#map {
+  --s-working: #b48ef7;
+  --s-review: var(--accent);
+  --s-todo: #4a5262;
+  --s-blocked: var(--bad);
+  --s-done: var(--ok);
+  --s-question: var(--warn);
+  max-width: 1500px;
+}
+
+.map-summary { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 18px; padding-bottom: 14px; margin-bottom: 18px; border-bottom: 1px solid var(--line); color: var(--muted); }
+.map-summary .stat { display: inline-flex; align-items: center; gap: 6px; }
+.map-summary .stat b { color: var(--text); }
+.map-summary .stat.you b { color: var(--warn); }
+.map-summary .spacer { flex: 1; }
+
+.sdot { width: 9px; height: 9px; border-radius: 50%; flex: none; display: inline-block; background: var(--s-todo); }
+.sdot.working, .seg.working { background: var(--s-working); animation: pulse 1.6s ease-in-out infinite; }
+.sdot.review, .seg.review { background: var(--s-review); }
+.sdot.blocked, .seg.blocked { background: var(--s-blocked); }
+.sdot.done, .seg.done { background: var(--s-done); }
+.sdot.question { background: var(--s-question); }
+@keyframes pulse { 50% { opacity: .45; } }
+
+.map-graph { position: relative; display: grid; grid-template-columns: minmax(190px, 300px) minmax(360px, 620px) minmax(190px, 300px); column-gap: clamp(48px, 6vw, 120px); align-items: start; }
+.map-edges { position: absolute; left: 0; top: 0; pointer-events: none; overflow: visible; }
+.map-col { position: relative; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.map-col h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 14px 0 0; }
+.map-col h3:first-child { margin-top: 0; }
+
+.node { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 7px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); color: var(--text); cursor: pointer; }
+.node:hover { border-color: var(--muted); }
+.node .mark { font: 600 11px ui-monospace, monospace; color: var(--accent); min-width: 24px; }
+.node .label { flex: 1; min-width: 0; }
+.node .num { color: var(--muted); font-size: 11px; }
+.node.question { border: 1px dashed var(--s-question); }
+.node.question .mark { color: var(--s-question); font-size: 13px; }
+
+.node .detail { flex-basis: 100%; padding: 6px 0 2px 34px; color: var(--muted); line-height: 1.5; }
+.node .detail .meta { margin-top: 4px; }
+
+.card { border: 1px solid var(--line); border-radius: 8px; background: var(--panel); padding: 8px 12px; }
+.card-head { display: flex; align-items: center; gap: 8px; }
+.card.goal .card-head { cursor: pointer; }
+.card .title { flex: 1; min-width: 0; font-weight: 600; }
+.card .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+.card .chev { color: var(--muted); width: 10px; }
+.num { font-size: 12px; color: var(--muted); }
+a.num:hover { color: var(--accent); }
+.segments { display: flex; gap: 3px; margin: 8px 0 2px 18px; }
+.seg { flex: 1; height: 6px; border-radius: 3px; background: var(--s-todo); }
+.children { list-style: none; margin: 10px 0 2px 18px; padding: 0; display: grid; gap: 6px; }
+.children li { display: flex; align-items: center; gap: 8px; }
+.children .label { flex: 1; min-width: 0; }
+
+.tag { font-size: 11px; padding: 0 6px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); white-space: nowrap; }
+.tag.you { color: var(--warn); border-color: var(--warn); }
+.tag.type.research, .tag.type.ops { color: var(--text); }
+.tag.blocked { color: var(--s-blocked); border-color: var(--s-blocked); }
+.tag.pr.OPEN { color: var(--s-review); border-color: var(--s-review); }
+.tag.pr.MERGED { color: var(--s-done); border-color: var(--s-done); }
+
+
+.edge { fill: none; stroke: #3b4658; stroke-width: 1.5; transition: opacity .15s, stroke .15s; }
+.edge.question { stroke: var(--s-question); stroke-dasharray: 4 4; opacity: .7; }
+.map-graph .node, .map-graph .card { transition: opacity .15s; }
+.map-graph.focused .node:not(.lit), .map-graph.focused .card:not(.lit) { opacity: .3; }
+.map-graph.focused .edge:not(.lit) { opacity: .08; }
+.map-graph.focused .edge.lit { stroke: var(--text); opacity: 1; }
+.map-graph.focused .edge.question.lit { stroke: var(--s-question); }
+
+/* Folded history: same nodes and lines as active work, grayed. */
+.node.folded, .card.folded { opacity: .5; }
+.edge.folded { opacity: .45; }
+.map-graph .folded.lit { opacity: .85; }
+.map-graph.focused .node.folded:not(.lit), .map-graph.focused .card.folded:not(.lit) { opacity: .2; }

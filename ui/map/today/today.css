@@ -1,0 +1,38 @@
+/* Styles the Today panel above the graph: groups, items, reasons.
+   Status dots, PR tags, and colors come from map.css. */
+
+.today { max-width: 960px; margin-bottom: 22px; }
+.today-head { display: flex; align-items: baseline; gap: 12px; }
+.today-head h3 { margin: 0; font-size: 15px; font-weight: 600; }
+.today .empty { margin: 0; color: var(--muted); }
+
+.today-group { margin-top: 14px; }
+.today-group h4 { margin: 0 0 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.today-group.needs h4, .today-group.needs .word { color: var(--s-question); }
+.today-group .count { margin-left: 4px; font-weight: 400; }
+.today-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+
+.today-item { padding: 5px 10px; border: 1px solid transparent; border-radius: 8px; }
+.today-item:hover { border-color: var(--line); background: var(--panel); }
+.today-row { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.today-row .title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: var(--text); font-weight: 600; }
+.today-row .title:hover { color: var(--accent); }
+.today-row .tick { flex: none; width: auto; margin: 0; padding: 0; cursor: pointer; accent-color: var(--accent); }
+.today-head .error { color: var(--bad); font-size: 12px; }
+.today-row .word { margin-left: auto; padding-left: 12px; white-space: nowrap; color: var(--muted); font-size: 12px; }
+
+/* Reasons: one muted line folded, a labeled list open. */
+.why { display: flex; gap: 6px; min-width: 0; margin: 2px 0 0 17px; color: var(--muted); font-size: 12px; cursor: pointer; }
+.why .chev { flex: none; width: 10px; }
+.today-item:has(.tick) .why { margin-left: 38px; }
+.why-line { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.why b { font: 600 11px ui-monospace, monospace; color: var(--accent); }
+.why-detail { flex: 1; min-width: 0; display: grid; grid-template-columns: max-content 1fr; gap: 3px 12px; margin: 0 0 4px; line-height: 1.5; }
+.why-detail dt { color: var(--muted); }
+.why-detail dd { margin: 0; color: var(--text); }
+
+/* Done today: one wrapped line of short links. */
+.done-list { display: flex; flex-wrap: wrap; gap: 6px; padding-left: 10px; }
+.done-item { max-width: 280px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; padding: 1px 8px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 12px; }
+.done-item b { color: var(--s-done); font-weight: 600; }
+.done-item:hover { color: var(--text); }

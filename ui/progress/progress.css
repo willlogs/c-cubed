@@ -1,0 +1,47 @@
+/* Progress tab: headline tiles, PR heatmap, and the day map.
+   Colors passed the dataviz validator on the dark panel. */
+
+.progress {
+  max-width: 1200px;
+  /* PRs: one blue hue, brighter means more. */
+  --h0: var(--line); --h1: #184f95; --h2: #256abf; --h3: #3987e5; --h4: #86b6ef;
+  /* Decisions: one gray hue, brighter means more important. */
+  --d-small: #565f70; --d-medium: #8a93a3; --d-big: #d8dee9;
+}
+.progress-head { display: flex; align-items: center; gap: 12px; color: var(--muted); }
+.progress h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 22px 0 8px; }
+.progress .hint { color: var(--muted); font-size: 12px; }
+
+.trend-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 220px)); gap: 8px; margin-top: 12px; }
+.trend-tile { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; }
+.trend-tile .value { font-size: 24px; font-weight: 600; }
+.trend-tile .label, .trend-tile .delta { color: var(--muted); font-size: 12px; }
+
+.heatmap { display: flex; gap: 4px; font-size: 11px; color: var(--muted); }
+.heatmap .week { display: grid; grid-template-rows: 16px repeat(7, 16px); gap: 4px; }
+.heatmap .week-head { white-space: nowrap; line-height: 16px; }
+.heatmap .weekday { line-height: 16px; padding-right: 4px; }
+.progress .cell { display: inline-block; width: 16px; height: 16px; border-radius: 3px; }
+.progress .cell.before { border: 1px dashed var(--line); }
+.heat-legend { display: flex; align-items: center; gap: 4px; margin-top: 8px; color: var(--muted); font-size: 11px; }
+.l0 { background: var(--h0); } .l1 { background: var(--h1); } .l2 { background: var(--h2); }
+.l3 { background: var(--h3); } .l4 { background: var(--h4); }
+
+.day-map { display: block; }
+.day-map text { fill: var(--muted); font-size: 11px; }
+.day-map .lane { fill: var(--text); font-size: 12px; }
+.day-map .day { fill: var(--text); text-anchor: middle; font-size: 12px; }
+.day-map .day.sub { fill: var(--muted); font-size: 11px; }
+.day-map .divider { stroke: var(--line); }
+.day-map .bubble.small { fill: var(--d-small); }
+.day-map .bubble.medium { fill: var(--d-medium); }
+.day-map .bubble.big { fill: var(--d-big); }
+.day-map .ring { fill: none; stroke: var(--d-big); stroke-width: 1.5; }
+.day-map .bubble-label { fill: var(--bg); text-anchor: middle; font-weight: 600; pointer-events: none; }
+.day-map g[data-tip]:hover .bubble { stroke: var(--accent); stroke-width: 2; }
+.day-map .bar { fill: var(--h3); }
+.day-map g[data-tip]:hover .bar { fill: var(--h4); }
+.day-map .count { fill: var(--text); text-anchor: middle; font-size: 12px; font-weight: 600; }
+.day-map .hit { fill: transparent; }
+
+.progress-tip { position: fixed; z-index: 10; pointer-events: none; max-width: 360px; white-space: pre-line; background: var(--bg); color: var(--text); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; font-size: 12px; }

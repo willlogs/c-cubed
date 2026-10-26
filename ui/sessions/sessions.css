@@ -1,0 +1,15 @@
+/* Sidebar session states and the message queue.
+   Loaded after style.css; colors come from its variables. */
+
+.dot.starting { background: var(--accent); opacity: .6; }
+
+.queue h2 { margin-top: 14px; }
+#queue-list { list-style: none; margin: 0; padding: 0 8px 8px; font-size: 12px; }
+#queue-list li { padding: 6px 8px; border-radius: 6px; border: 1px solid var(--line); margin-bottom: 4px; }
+#queue-list li.waiting { border-color: var(--warn); }
+#queue-list li.done { opacity: .55; }
+#queue-list li.empty { border: none; color: var(--muted); padding: 2px 8px; }
+#queue-list .route { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+#queue-list .route button, #queue-list .route .state { margin-left: auto; }
+#queue-list .text { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+#queue-list .hold, #home-queue .hold { color: var(--warn); font-size: 11px; margin-top: 2px; }

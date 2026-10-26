@@ -1,0 +1,45 @@
+/* Home: the owner, control pair, and workers, joined by lines.
+   Calm cards; color only where something needs attention. */
+
+.home { position: relative; display: grid; gap: 56px; padding: 8px 0 24px; }
+.home-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 28px; position: relative; z-index: 1; }
+.home-row.control { gap: 120px; }
+.home .quiet, .home-card .quiet { color: var(--muted); }
+
+.home-card { width: 280px; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; cursor: pointer; }
+.home-card:hover { border-color: var(--accent); }
+.home-card header { display: flex; align-items: center; gap: 8px; }
+.home-card p { margin: 4px 0 0; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.home-card .role { color: var(--muted); }
+.home-card .state.working { color: var(--ok); }
+.home-card .state.input { color: var(--warn); font-weight: 600; }
+.home-card.input { border-color: var(--warn); }
+.home-card .doing { font-family: ui-monospace, monospace; }
+.home-card .when { color: var(--muted); font-family: system-ui, sans-serif; }
+.home-card.owner { width: 220px; text-align: center; }
+.home-card.owner header { justify-content: center; }
+.home-card.owner p { white-space: normal; }
+
+.track { list-style: none; display: flex; gap: 4px; margin: 8px 0 0; padding: 0; font-size: 11px; }
+.track li { flex: 1; text-align: center; padding: 2px 0; border-radius: 4px; background: var(--line); color: var(--muted); }
+.track li.done { background: color-mix(in srgb, var(--ok) 25%, transparent); color: var(--ok); }
+.track li.now { background: color-mix(in srgb, var(--accent) 25%, transparent); color: var(--accent); }
+
+.home-edges { position: absolute; inset: 0; pointer-events: none; z-index: 0; overflow: visible; }
+.home-edges path { fill: none; stroke: var(--line); stroke-width: 2; }
+.home-edges path.recent { stroke: var(--accent); }
+.home-edges path.waiting { stroke: var(--warn); stroke-dasharray: 6 4; }
+.home-labels { position: absolute; inset: 0; pointer-events: none; z-index: 2; }
+.edge-label { position: absolute; transform: translate(-50%, -50%); font-size: 11px; padding: 1px 8px; border-radius: 999px; background: var(--bg); border: 1px solid var(--line); color: var(--muted); }
+.edge-label.waiting { border-color: var(--warn); color: var(--warn); }
+.edge-label.recent { border-color: var(--accent); color: var(--accent); }
+
+.home-queue, .home-ended { max-width: 900px; margin: 0 auto 16px; }
+#home-queue { list-style: none; margin: 0; padding: 0; font-size: 12px; }
+#home-queue li { padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; margin-bottom: 4px; }
+#home-queue li.waiting { border-color: var(--warn); }
+#home-queue li.done { opacity: .55; }
+#home-queue li.empty { border: none; color: var(--muted); }
+#home-queue .route { display: flex; gap: 6px; color: var(--muted); }
+#home-queue .route button, #home-queue .route .state { margin-left: auto; }
+.home-ended button { margin: 0 6px 6px 0; }
