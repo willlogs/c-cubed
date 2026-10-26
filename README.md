@@ -15,7 +15,7 @@ The kit installs into any git project as `tools/command-center/`. Its first run 
 From a checkout of this kit:
 
 ```bash
-git clone https://github.com/willlogs/command-center.git ~/command-center
+gh repo clone willlogs/command-center ~/command-center
 node ~/command-center/bin/command-center.mjs init path/to/project     # an existing git project
 node ~/command-center/bin/command-center.mjs new path/to/new-project  # or start a new one
 ```
@@ -60,11 +60,11 @@ See [docs/configuration.md](docs/configuration.md) for every key in `command-cen
 ## Update
 
 ```bash
-npm run cc -- update                        # from kit.source at kit.ref
+npm run cc -- update                        # from kit.source at kit.ref (SSH by default)
 npm run cc -- update --from ~/command-center  # from a local checkout
 ```
 
-The new kit's own installer runs. It replaces only what the kit owns and never touches the project's files.
+An HTTPS `kit.source` on a private repository needs `gh auth setup-git` once. The new kit's own installer runs. It replaces only what the kit owns and never touches the project's files.
 
 | Owner | Files |
 |---|---|
