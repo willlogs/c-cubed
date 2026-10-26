@@ -4,7 +4,7 @@
 
 
 /** Process variables that mark a hosted production machine. */
-const PRODUCTION_KEYS = ["RAILWAY_ENVIRONMENT", "FLY_APP_NAME", "DYNO", "RENDER_SERVICE_ID", "VERCEL_ENV"];
+const PRODUCTION_KEYS = ["FLY_APP_NAME", "DYNO", "RENDER_SERVICE_ID", "VERCEL_ENV"];
 
 
 

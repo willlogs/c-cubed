@@ -1,6 +1,6 @@
-# Command center
+# C³ (c-cubed)
 
-Runs a software project with a team of Claude Code sessions, in a local page that shows each one as a live terminal. The owner talks to an **assistant**; a **master** turns the owner's decisions into GitHub issues, briefs one **worker** per issue in its own worktree, verifies each pull request locally, and merges it. Every rule the agents follow lives in the project's repository, and the important ones are enforced, not just written down.
+C³ runs a software project with a team of Claude Code sessions, from a local command center page that shows each one as a live terminal. The owner talks to an **assistant**; a **master** turns the owner's decisions into GitHub issues, briefs one **worker** per issue in its own worktree, verifies each pull request locally, and merges it. Every rule the agents follow lives in the project's repository, and the important ones are enforced, not just written down.
 
 The kit installs into any git project as `tools/command-center/`. Its first run is a setup interview that writes the project's rules and founding decisions.
 
@@ -15,9 +15,9 @@ The kit installs into any git project as `tools/command-center/`. Its first run 
 From a checkout of this kit:
 
 ```bash
-gh repo clone willlogs/command-center ~/command-center
-node ~/command-center/bin/command-center.mjs init path/to/project     # an existing git project
-node ~/command-center/bin/command-center.mjs new path/to/new-project  # or start a new one
+gh repo clone willlogs/c-cubed ~/c-cubed
+node ~/c-cubed/bin/c-cubed.mjs init path/to/project     # an existing git project
+node ~/c-cubed/bin/c-cubed.mjs new path/to/new-project  # or start a new one
 ```
 
 `init` asks for the owner and project name (`--yes` takes the defaults: `git config user.name` and the folder name) and detects the trunk, install command, and checks. Then:
@@ -60,11 +60,11 @@ See [docs/configuration.md](docs/configuration.md) for every key in `command-cen
 ## Update
 
 ```bash
-npm run cc -- update                        # from kit.source at kit.ref (SSH by default)
-npm run cc -- update --from ~/command-center  # from a local checkout
+npm run cc -- update                   # from kit.source at kit.ref
+npm run cc -- update --from ~/c-cubed  # from a local checkout
 ```
 
-An HTTPS `kit.source` on a private repository needs `gh auth setup-git` once. The new kit's own installer runs. It replaces only what the kit owns and never touches the project's files.
+The new kit's own installer runs. It replaces only what the kit owns and never touches the project's files.
 
 | Owner | Files |
 |---|---|
@@ -110,4 +110,6 @@ python3 templates/kit/.agents/skills/write-readable-code/scripts/check_readabili
 COMMAND_CENTER_PORT=8096 node server/main.mjs --no-master --no-open   # try the page beside a live one
 ```
 
-The kit started as ActionLink's command center (`actionlink` at `65eb6c387`).
+## License
+
+Copyright © 2026 Will ([willlogs](https://github.com/willlogs)). C³ is licensed under the [PolyForm Internal Use License 1.0.0](LICENSE.md): use it and change it for yourself or inside your company, but do not distribute it, sell it, or ship it as part of another product. Installing it copies the kit into your project, so keep that project's repository private to you or your company.

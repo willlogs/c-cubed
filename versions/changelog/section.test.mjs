@@ -27,7 +27,7 @@ function issue(number, labels, decisions = []) {
 
 /** A finished version with one of each kind of issue. */
 const VERSION = describeVersion({
-  number: "2.1.0", goal: "In-app sign-in", about: "Sign in without Monday.", url: "https://x/milestone/1", open: true,
+  number: "2.1.0", goal: "Saved searches", about: "Keep searches between visits.", url: "https://x/milestone/1", open: true,
   release: null, promotion: null,
   issues: [
     issue(84, ["decision"]), issue(68, ["type:research"], ["D42"]),
@@ -40,7 +40,7 @@ const VERSION = describeVersion({
 test("a section lists the goal, basis, and changes by priority", () => {
   // P0 before P1 before unlabeled; each with issue and PR.
   const section = changelogSection(VERSION, "2026-10-30", []);
-  assert.match(section, /^## v2\.1\.0 — In-app sign-in\n\nReleased 2026-10-30 · \[Milestone\]\(https:\/\/x\/milestone\/1\)\n\n> Sign in without Monday\./);
+  assert.match(section, /^## v2\.1\.0 — Saved searches\n\nReleased 2026-10-30 · \[Milestone\]\(https:\/\/x\/milestone\/1\)\n\n> Keep searches between visits\./);
   assert.match(section, /\*\*Decisions:\*\* D42, D44, D46 · answered #84 Issue 84/);
   assert.match(section, /\*\*Research:\*\* #68 Issue 68/);
   const order = ["### P0", "- Feature: Issue 85 (#85, PR #185)", "### P1", "- Bug: Issue 90 (#90, PR #190)", "### No priority", "- Chore: Issue 91"];

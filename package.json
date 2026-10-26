@@ -1,11 +1,12 @@
 {
-  "name": "command-center",
+  "name": "c-cubed",
   "version": "0.1.0",
   "private": true,
+  "license": "SEE LICENSE IN LICENSE.md",
   "type": "module",
   "description": "Runs a project with a team of Claude Code sessions: an assistant for the owner, a master that reviews and merges, and one worker per issue.",
   "bin": {
-    "command-center": "bin/command-center.mjs"
+    "c-cubed": "bin/c-cubed.mjs"
   },
   "scripts": {
     "prestart": "npm ls --depth=0 >/dev/null 2>&1 || npm ci --no-audit --no-fund --loglevel=error",

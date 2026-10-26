@@ -114,7 +114,7 @@ test("without a plan, only what needs the owner shows", () => {
 test("why lists decisions, parent, mentions, note, and quote", () => {
   // Issue 23 is part of goal 9 and names D21.
   const issues = [node(9), node(20), node(4), node(43, { kind: "plan" }), node(23, { parent: 9, mentions: [9, 20, 43], decidedBy: '"Use the CLIs"' })];
-  const decisions = [{ id: "D06", text: "Railway", issues: [] }, { id: "D21", text: "CLIs", issues: [23] }];
+  const decisions = [{ id: "D06", text: "Staging", issues: [] }, { id: "D21", text: "CLIs", issues: [23] }];
   const items = [line("bundle", false, [23, 4], { note: "Staging, after #4 (D06)", decisions: ["D06"] })];
   const [item] = buildToday(mapOf(issues, { items }, decisions), []).groups[0].items;
   assert.deepEqual(item.why.decisions.map((decision) => decision.id), ["D21", "D06"]);

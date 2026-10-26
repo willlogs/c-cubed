@@ -185,7 +185,7 @@ test("init installs the real kit, and a rerun changes nothing", () => {
   // The real templates render into a bare repository.
   const project = folder({ "package.json": JSON.stringify({ name: "real", scripts: { test: "node --test" } }) }, true);
   const summary = installKit({ kitRoot: KIT_ROOT, projectRoot: project, answers: { owner: "Will", project: "Real" }, installPackages: false });
-  assert.ok(fs.existsSync(path.join(project, "tools/command-center/bin/command-center.mjs")));
+  assert.ok(fs.existsSync(path.join(project, "tools/command-center/bin/c-cubed.mjs")));
   assert.ok(summary.templates.files.length > 0);
 
   // Every kit skill is linked; rules and register exist.

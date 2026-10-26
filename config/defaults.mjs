@@ -35,7 +35,7 @@ export const DEFAULTS = {
   versions: { file: null, pattern: null, changelog: "CHANGELOG.md", migrations: null },
 
   // Where kit updates come from.
-  kit: { source: "git@github.com:willlogs/command-center.git", ref: "main" },
+  kit: { source: "https://github.com/willlogs/c-cubed.git", ref: "main" },
 };
 
 /** Defaults for a stacks block once a project adds one. */

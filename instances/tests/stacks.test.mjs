@@ -42,7 +42,7 @@ test("names and hosts are checked before anything runs", () => {
   assert.equal(assertInstanceName("issue-4-fix"), "issue-4-fix");
   assert.throws(() => assertInstanceName("Bad Name"), /must match/);
   assert.throws(() => assertDevelopmentHost({ NODE_ENV: "production" }), /refuse/);
-  assert.throws(() => assertDevelopmentHost({ RAILWAY_ENVIRONMENT: "production" }), /RAILWAY_ENVIRONMENT/);
+  assert.throws(() => assertDevelopmentHost({ FLY_APP_NAME: "shop" }), /FLY_APP_NAME/);
   assert.doesNotThrow(() => assertDevelopmentHost({ NODE_ENV: "development" }));
 });
 

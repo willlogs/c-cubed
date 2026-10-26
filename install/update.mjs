@@ -27,7 +27,7 @@ export function updateKit(projectRoot = mainCheckout(), { from, ref } = {}) {
   const source = from ?? config.kit.source;
   const chosenRef = ref ?? (from ? undefined : config.kit.ref);
   const local = fs.existsSync(source);
-  const temporary = local ? null : fs.mkdtempSync(path.join(os.tmpdir(), "command-center-update-"));
+  const temporary = local ? null : fs.mkdtempSync(path.join(os.tmpdir(), "c-cubed-update-"));
 
   // Run the new kit's installer, then drop any clone.
   try {
@@ -79,8 +79,8 @@ function cloneKit(source, ref, temporary) {
  */
 function runInstaller(kitRoot, projectRoot, source, ref) {
   // Output goes straight to the caller's terminal.
-  const bin = path.join(kitRoot, "bin", "command-center.mjs");
-  if (!fs.existsSync(bin)) throw new Error(`${kitRoot} has no bin/command-center.mjs; is it the command-center kit?`);
+  const bin = path.join(kitRoot, "bin", "c-cubed.mjs");
+  if (!fs.existsSync(bin)) throw new Error(`${kitRoot} has no bin/c-cubed.mjs; is it the C³ kit?`);
   const args = [bin, "update", projectRoot, "--source", source, ...(ref ? ["--ref", ref] : [])];
   return spawnSync(process.execPath, args, { stdio: "inherit" }).status ?? 1;
 }

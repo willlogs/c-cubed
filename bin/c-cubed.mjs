@@ -14,7 +14,7 @@ import { printSummary } from "./summary.mjs";
 const KIT_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 /** What each command does. */
-const USAGE = `Usage: command-center <command> [options]
+const USAGE = `Usage: c-cubed <command> [options]
   init [dir]          add the command center to an existing git project (default: .)
   new <dir>           create a new git project with the command center
   update <dir>        install this kit into a project that already has one
@@ -81,7 +81,7 @@ function createProject(dir, flags) {
  */
 async function initialize(dir, flags, created) {
   // Ask first, then install from this kit.
-  if (!isCheckout(dir)) throw new Error(`${dir} is not a git repository. Start a new project with: command-center new <dir>`);
+  if (!isCheckout(dir)) throw new Error(`${dir} is not a git repository. Start a new project with: c-cubed new <dir>`);
   const answers = await collectAnswers(dir, flags);
   const summary = installKit({ kitRoot: KIT_ROOT, projectRoot: dir, mode: "init", answers, installPackages: !flags["no-install"], source: flags.source, ref: flags.ref });
   printSummary(summary);

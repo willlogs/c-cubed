@@ -1,4 +1,4 @@
-// Runs the command-center script as people will: help, init, new.
+// Runs the c-cubed script as people will: help, init, new.
 // Uses --yes and --no-install, so nothing waits or downloads.
 
 import assert from "node:assert/strict";
@@ -10,7 +10,7 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 /** The script under test. */
-const BIN = path.join(path.dirname(fileURLToPath(import.meta.url)), "command-center.mjs");
+const BIN = path.join(path.dirname(fileURLToPath(import.meta.url)), "c-cubed.mjs");
 
 
 
@@ -44,7 +44,7 @@ test("init refuses a folder without git", () => {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "cc-bin-"));
   const result = run(["init", dir, "--yes", "--no-install"]);
   assert.equal(result.status, 1);
-  assert.match(result.output, /command-center new/);
+  assert.match(result.output, /c-cubed new/);
 });
 
 

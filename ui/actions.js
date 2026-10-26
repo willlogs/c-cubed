@@ -48,7 +48,7 @@ export async function loadProject() {
     return;
   }
   const setup = project.mode === "setup";
-  document.title = project.project ? `${project.project} · Command Center` : "Command Center";
+  document.title = project.project ? `${project.project} · C³` : "C³";
   byId("kickoff-button").textContent = setup ? "Start setup" : "Start the day";
   byId("kickoff-hint").textContent = setup
     ? "It reads the repository, interviews you, and writes the rules and founding decisions."

@@ -28,7 +28,7 @@ The running command center rereads the file whenever it changes. After changing 
 | `versions.pattern` | `"version":\s*"([^"]+)"` | Regular expression whose only group captures the number. The default fits `package.json`. |
 | `versions.changelog` | `"CHANGELOG.md"` | Where release notes go, newest first. |
 | `versions.migrations` | `null` | Glob of migration files to list in promotion PRs, such as `apps/*/prisma/migrations/*/migration.sql`. |
-| `kit.source` | the kit's GitHub SSH URL | Where `cc update` fetches the kit. A local path or an HTTPS URL works too. |
+| `kit.source` | the kit's GitHub URL | Where `cc update` fetches the kit. A local path or an SSH URL works too. |
 | `kit.ref` | `"main"` | Branch or tag `cc update` uses. |
 
 ## Stacks

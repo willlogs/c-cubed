@@ -1,7 +1,7 @@
 // Counts merged PRs, closed issues, and decisions per local day.
 // Pure: build.mjs reads GitHub and git, this only sorts.
 
-/** PR types (D41) in tooltip order; the rest are other. */
+/** PR types in tooltip order; the rest are other. */
 export const TYPES = ["feature", "bug", "chore", "research", "ops", "other"];
 
 /** Days without activity that still count as one run. */
